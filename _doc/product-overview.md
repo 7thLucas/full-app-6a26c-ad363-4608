@@ -130,18 +130,20 @@ HospitalityHub ERP is a production-ready, multi-tenant SaaS platform for the hos
 
 | Layer | Technology |
 |---|---|
-| **Frontend** | React.js, Vite 5, TailwindCSS 3, React Router, Axios, React Query, Zustand, Socket.IO Client |
-| **Backend** | Python Flask, SQLAlchemy, Flask-JWT-Extended, Flask-Migrate, Flask-SocketIO, Celery |
-| **Database** | PostgreSQL |
-| **Deployment** | Docker, Nginx, Gunicorn |
+| **Frontend** | React (via Remix), Vite 5, TailwindCSS 3, shadcn/ui, React Hooks, Socket.IO Client |
+| **Framework** | Remix (Vite plugin) + Express Custom Server |
+| **Language** | TypeScript |
+| **Backend** | Express.js, Mongoose / Typegoose, Flask-SocketIO (real-time) |
+| **Database** | MongoDB |
+| **Deployment** | Docker, Nginx |
 
 ---
 
-## Database Schema (Core Tables)
+## Database Schema (Core Collections)
 
 `tenants`, `subscriptions`, `branches`, `users`, `roles`, `permissions`, `categories`, `products`, `modifiers`, `customers`, `loyalty_points`, `tables`, `reservations`, `orders`, `order_items`, `payments`, `inventory_items`, `stock_movements`, `suppliers`, `purchases`, `rooms`, `bookings`, `expenses`, `notifications`, `audit_logs`
 
-All tables include foreign keys, indexes, and constraints.
+All collections include document references, indexes, and validation rules.
 
 ---
 
