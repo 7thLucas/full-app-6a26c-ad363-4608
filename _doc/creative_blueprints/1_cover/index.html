@@ -1,0 +1,54 @@
+<style>
+  .mode-landscape .sl-layout { flex-direction: row; }
+  .mode-portrait .sl-layout { flex-direction: column; }
+  .mode-landscape .sl-content-col { width: 55%; }
+  .mode-landscape .sl-visual-col { width: 45%; }
+  .mode-portrait .sl-content-col { width: 100%; }
+  .mode-portrait .sl-visual-col { display: none; }
+</style>
+<section class="w-full h-full overflow-auto bg-white">
+  <div class="sl-layout flex h-full">
+    <!-- Content column -->
+    <div class="sl-content-col flex flex-col justify-between p-12" style="background: #fff;">
+      <!-- Top badge -->
+      <div>
+        <span class="inline-block text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-full" style="background:#FEF3C7; color:#92400E;">Enterprise Hospitality ERP</span>
+      </div>
+      <!-- Main headline -->
+      <div>
+        <h1 class="font-black leading-tight mb-5" style="font-size:2.8rem; color:#1E3A5F; letter-spacing:-0.02em;">
+          One Platform.<br>Every Hospitality<br>Business You Run.
+        </h1>
+        <p class="text-lg leading-relaxed mb-8" style="color:#374151; max-width:420px;">
+          HospitalityHub ERP unifies POS, kitchen display, inventory, hotel bookings, accounting, and multi-branch analytics — built for operators who refuse to settle for fragmented tools.
+        </p>
+        <!-- Segment chips -->
+        <div class="flex flex-wrap gap-2">
+          <span class="px-3 py-1 rounded-full text-xs font-semibold" style="background:#EFF6FF; color:#1E3A5F;">Restaurants</span>
+          <span class="px-3 py-1 rounded-full text-xs font-semibold" style="background:#EFF6FF; color:#1E3A5F;">Cafés</span>
+          <span class="px-3 py-1 rounded-full text-xs font-semibold" style="background:#EFF6FF; color:#1E3A5F;">Hotels</span>
+          <span class="px-3 py-1 rounded-full text-xs font-semibold" style="background:#FEF3C7; color:#92400E;">Bars &amp; Lounges</span>
+          <span class="px-3 py-1 rounded-full text-xs font-semibold" style="background:#FEF3C7; color:#92400E;">Food Courts</span>
+          <span class="px-3 py-1 rounded-full text-xs font-semibold" style="background:#EFF6FF; color:#1E3A5F;">Bakeries</span>
+        </div>
+      </div>
+      <!-- Attribution -->
+      <div>
+        <data-attribution />
+      </div>
+    </div>
+    <!-- Visual column -->
+    <div class="sl-visual-col relative overflow-hidden" style="background: linear-gradient(135deg, #1E3A5F 0%, #2d5490 60%, #F59E0B 100%);">
+      <img
+        src="https://api.qb-deck.quantumbyte.ai/common/image-generation?prompt=Modern%20hospitality%20operations%20dashboard%20on%20tablet%20and%20screen%2C%20restaurant%20POS%20interface%2C%20hotel%20lobby%20background%2C%20warm%20amber%20and%20deep%20blue%20tones%2C%20professional%20editorial%20style"
+        alt="HospitalityHub ERP"
+        class="absolute inset-0 w-full h-full object-cover opacity-80"
+      />
+      <!-- Overlay brand mark -->
+      <div class="absolute bottom-10 right-10 text-right">
+        <p class="font-black text-2xl" style="color:#fff; letter-spacing:-0.01em;">HospitalityHub</p>
+        <p class="text-sm font-semibold" style="color:#F59E0B; letter-spacing:0.1em;">ERP</p>
+      </div>
+    </div>
+  </div>
+</section>
