@@ -1,566 +1,163 @@
-# Build HospitalityHub ERP - Complete Multi-Business Restaurant, Café & Hotel Management System
+# HospitalityHub ERP — Product Overview
 
-You are a senior software architect and full-stack engineer. Build a production-ready enterprise hospitality management platform called HospitalityHub ERP.
+## What It Is
+
+HospitalityHub ERP is a production-ready, multi-tenant SaaS platform for the hospitality industry. It provides end-to-end business management for restaurants, cafés, hotels, bakeries, bars, fast food outlets, food courts, and lounges — all from a single unified platform. Each business operates in fully isolated data environments while sharing the underlying infrastructure.
+
+---
+
+## Target Users
+
+| Persona | Description |
+|---|---|
+| **Super Admin** | Platform operator; manages all tenants and subscriptions |
+| **Business Owner** | Controls one or more businesses; views cross-branch P&L |
+| **Manager** | Oversees a single branch; monitors staff, inventory, and performance |
+| **Cashier** | Runs the POS terminal; handles payments and shift summaries |
+| **Waiter / Server** | Takes orders tableside; views order status |
+| **Kitchen Staff** | Monitors the Kitchen Display System (KDS) in real time |
+| **Accountant** | Accesses financial reports, journal entries, and cash flow |
+| **Receptionist** | Manages hotel check-ins, check-outs, and room bookings |
+| **Housekeeping** | Tracks room cleaning and maintenance status |
+
+---
+
+## Business Types Supported
+
+- Restaurants
+- Cafés
+- Hotels
+- Bakeries
+- Bars
+- Fast Food Businesses
+- Food Courts
+- Lounges
+
+---
+
+## Brand & Tone
+
+- **Name:** HospitalityHub ERP
+- **Positioning:** Enterprise-grade hospitality management — powerful enough for hotel chains, simple enough for a single café
+- **Tone:** Professional, reliable, modern; clean operational UI with dark/light mode
+- **Primary Colors:** Deep blue (`#1E3A5F`) and amber (`#F59E0B`) — trust and energy
+
+---
+
+## Core Modules
+
+### 1. Multi-Tenant Architecture
+- Tenants → Businesses → Branches hierarchy
+- Every record carries `tenant_id` + `branch_id`
+- Complete data isolation between tenants
+
+### 2. Authentication
+- Touchscreen PIN keypad (4-digit) for staff login
+- JWT tokens with session timeout and activity tracking
+- Role-Based Access Control (RBAC)
+- Secure PIN hashing
+
+### 3. Role-Specific Dashboards
+- **Owner:** Revenue, profit, expenses, top products, top branches
+- **Manager:** Branch performance, inventory alerts, employee performance
+- **Cashier:** Shift summary, open orders
+- **Kitchen:** Live incoming / preparing / ready orders
+- **Reception:** Room bookings, check-ins, check-outs
+
+### 4. Point of Sale (POS)
+- Product grid with category filtering and search
+- Cart, split/merge bills, discounts, refunds, returns, notes
+- Payment: Cash, Card, Mobile Money, Bank Transfer, Mixed
+- Order states: Pending → Preparing → Ready → Served → Completed / Cancelled
+- Receipt printing
+- **Offline support** — local storage, queued sync when reconnected
+
+### 5. Menu Management
+- Categories → Subcategories → Products → Variants → Modifiers → Combo Meals
+- Per-product: Name, description, price, cost price, tax, SKU, barcode, image, status
+
+### 6. Table Management
+- Visual floor plan editor; drag-and-drop table placement
+- Table actions: create, move, merge, split, reserve
+- Table status: Available, Occupied, Reserved, Cleaning
+
+### 7. Kitchen Display System (KDS)
+- Real-time Socket.IO updates
+- Order lifecycle: Created → Preparing → Ready → Served
+- Audio alerts, preparation timers, order priority
+
+### 8. Inventory Management
+- Stock management, purchase orders, stock transfers, adjustments, wastage
+- Automatic ingredient deduction on each sale
+- Low-stock alerts
+
+### 9. Supplier Management
+- Supplier profiles, purchase orders, goods received notes, supplier payments
+
+### 10. Customer Relationship Management (CRM)
+- Customer profiles, loyalty points, rewards, purchase history
+- Birthday reminders, promotional campaigns
+
+### 11. Reservation Management
+- **Restaurant:** Date, time, guest count, table assignment
+- **Hotel:** Room, check-in/check-out dates, guest details
+
+### 12. Hotel Module
+- Room types: Single, Double, Deluxe, Suite, VIP
+- Booking calendar, room allocation, check-in/check-out
+- Room service, housekeeping, maintenance scheduling
+- Room status: Available, Occupied, Reserved, Cleaning, Maintenance
+
+### 13. Accounting
+- Income & expense tracking, journal entries, cash flow
+- P&L statement, balance sheet
+- Expense categories: Salaries, Utilities, Purchases, Rent, Maintenance
+
+### 14. Reporting
+- Sales (daily/weekly/monthly/yearly), inventory, customer, staff, financial
+- Export: PDF, Excel, CSV
+
+### 15. Notifications
+- Channels: SMS, Email, WhatsApp, Push
+- Events: New reservation, low stock, payment received, new order
+
+### 16. Security
+- JWT + RBAC, audit logs, HTTPS-ready, rate limiting, backup strategy
+
+---
 
 ## Technology Stack
 
-Frontend:
-
-* React.js
-* Vite 5
-* TailwindCSS 3
-* React Router
-* Axios
-* React Query
-* Zustand
-* Socket.IO Client
-
-Backend:
-
-* Python Flask
-* SQLAlchemy
-* Flask JWT Extended
-* Flask Migrate
-* Flask SocketIO
-* Celery
-
-Database:
-
-* PostgreSQL
-
-Authentication:
-
-* PIN Keypad Authentication
-* JWT Tokens
-* Role-Based Access Control (RBAC)
-
-Deployment:
-
-* Docker
-* Nginx
-* Gunicorn
-
-## Project Goal
-
-Create a complete multi-tenant SaaS platform for:
-
-* Restaurants
-* Cafés
-* Hotels
-* Bakeries
-* Bars
-* Fast Food Businesses
-* Food Courts
-* Lounges
-
-Each business must have isolated data while operating on a shared platform.
+| Layer | Technology |
+|---|---|
+| **Frontend** | React.js, Vite 5, TailwindCSS 3, React Router, Axios, React Query, Zustand, Socket.IO Client |
+| **Backend** | Python Flask, SQLAlchemy, Flask-JWT-Extended, Flask-Migrate, Flask-SocketIO, Celery |
+| **Database** | PostgreSQL |
+| **Deployment** | Docker, Nginx, Gunicorn |
 
 ---
 
-# Core Requirements
+## Database Schema (Core Tables)
 
-## Multi-Tenant Architecture
+`tenants`, `subscriptions`, `branches`, `users`, `roles`, `permissions`, `categories`, `products`, `modifiers`, `customers`, `loyalty_points`, `tables`, `reservations`, `orders`, `order_items`, `payments`, `inventory_items`, `stock_movements`, `suppliers`, `purchases`, `rooms`, `bookings`, `expenses`, `notifications`, `audit_logs`
 
-Create:
-
-* Super Admin
-* Business Owners
-* Multiple Businesses
-* Multiple Branches
-
-Every record must contain:
-
-* tenant_id
-* branch_id
-
-Data from one business must never be visible to another business.
+All tables include foreign keys, indexes, and constraints.
 
 ---
 
-# Authentication Module
+## API Surface
 
-Build a touchscreen PIN keypad login.
+RESTful APIs with validation, pagination, filtering, search, and sorting:
 
-Requirements:
-
-* 4-digit PIN
-* Employee selection screen
-* JWT authentication
-* Secure PIN hashing
-* Session timeout
-* Activity tracking
-
-User Roles:
-
-* Super Admin
-* Owner
-* Manager
-* Cashier
-* Waiter
-* Kitchen Staff
-* Accountant
-* Receptionist
-* Housekeeping
+`/api/auth`, `/api/users`, `/api/branches`, `/api/products`, `/api/orders`, `/api/customers`, `/api/inventory`, `/api/reports`, `/api/hotel`
 
 ---
 
-# Dashboard
-
-Create dashboards for:
-
-Owner Dashboard:
-
-* Revenue
-* Profit
-* Expenses
-* Orders
-* Top Products
-* Top Branches
-
-Manager Dashboard:
-
-* Branch Performance
-* Inventory Alerts
-* Employee Performance
-
-Cashier Dashboard:
-
-* Current Shift
-* Sales Summary
-* Open Orders
-
-Kitchen Dashboard:
-
-* Incoming Orders
-* Preparing Orders
-* Ready Orders
-
-Reception Dashboard:
-
-* Room Bookings
-* Check-ins
-* Check-outs
-
----
-
-# POS Module
-
-Build a modern POS system.
-
-Features:
-
-* Product grid
-* Category filtering
-* Search products
-* Cart system
-* Split bills
-* Merge bills
-* Discounts
-* Refunds
-* Returns
-* Notes
-* Receipt printing
-
-Payment Methods:
-
-* Cash
-* Card
-* Mobile Money
-* Bank Transfer
-* Mixed Payment
-
-Order States:
-
-* Pending
-* Preparing
-* Ready
-* Served
-* Completed
-* Cancelled
-
----
-
-# Menu Management
-
-Build:
-
-Categories
-Subcategories
-Products
-Variants
-Modifiers
-Combo Meals
-
-Each product includes:
-
-* Name
-* Description
-* Price
-* Cost Price
-* Tax
-* SKU
-* Barcode
-* Image
-* Status
-
----
-
-# Table Management
-
-Create restaurant floor plans.
-
-Features:
-
-* Create tables
-* Move tables
-* Merge tables
-* Split tables
-* Reservations
-
-Table Status:
-
-* Available
-* Occupied
-* Reserved
-* Cleaning
-
----
-
-# Kitchen Display System (KDS)
-
-Use Socket.IO.
-
-Real-Time Workflow:
-
-Order Created
-→ Kitchen
-→ Preparing
-→ Ready
-→ Served
-
-Features:
-
-* Live updates
-* Audio alerts
-* Preparation timers
-* Order priority
-
----
-
-# Inventory Management
-
-Create complete inventory tracking.
-
-Features:
-
-* Stock management
-* Purchase orders
-* Stock transfers
-* Adjustments
-* Wastage tracking
-* Low stock alerts
-
-Automatic deduction of ingredients after every sale.
-
----
-
-# Supplier Management
-
-Create:
-
-* Suppliers
-* Purchase Orders
-* Goods Received Notes
-* Supplier Payments
-
-Supplier Fields:
-
-* Name
-* Phone
-* Email
-* Address
-* Balance
-
----
-
-# Customer Management
-
-Create CRM system.
-
-Features:
-
-* Customer profiles
-* Loyalty points
-* Rewards
-* Purchase history
-* Birthday reminders
-* Promotions
-
----
-
-# Reservation Management
-
-Restaurant Reservations:
-
-* Date
-* Time
-* Guests
-* Table
-
-Hotel Reservations:
-
-* Room
-* Check-in
-* Check-out
-* Guest details
-
----
-
-# Hotel Module
-
-Build full hotel management.
-
-Room Types:
-
-* Single
-* Double
-* Deluxe
-* Suite
-* VIP
-
-Features:
-
-* Booking calendar
-* Room allocation
-* Check-in
-* Check-out
-* Room service
-* Housekeeping
-* Maintenance
-
-Room Status:
-
-* Available
-* Occupied
-* Reserved
-* Cleaning
-* Maintenance
-
----
-
-# Accounting Module
-
-Create:
-
-* Income tracking
-* Expense tracking
-* Journal entries
-* Cash flow
-* Profit and loss
-* Balance sheet
-
-Expense Categories:
-
-* Salaries
-* Utilities
-* Purchases
-* Rent
-* Maintenance
-
----
-
-# Reporting Module
-
-Generate reports:
-
-Sales Reports:
-
-* Daily
-* Weekly
-* Monthly
-* Yearly
-
-Inventory Reports:
-
-* Stock Levels
-* Wastage
-* Purchases
-
-Customer Reports:
-
-* Loyalty
-* Spending
-
-Staff Reports:
-
-* Attendance
-* Productivity
-
-Financial Reports:
-
-* Revenue
-* Expenses
-* Profit
-
-Export:
-
-* PDF
-* Excel
-* CSV
-
----
-
-# Notification Module
-
-Channels:
-
-* SMS
-* Email
-* WhatsApp
-* Push Notifications
-
-Events:
-
-* New Reservation
-* Low Stock
-* Payment Received
-* New Order
-
----
-
-# Offline Support
-
-POS must continue working without internet.
-
-Requirements:
-
-* Local storage
-* Offline transactions
-* Automatic synchronization when online
-
----
-
-# Security
-
-Implement:
-
-* JWT Authentication
-* RBAC Permissions
-* Audit Logs
-* HTTPS Ready
-* Password/PIN Hashing
-* Rate Limiting
-* Backup Strategy
-
----
-
-# Database Design
-
-Create complete PostgreSQL schema with:
-
-tenants
-subscriptions
-branches
-users
-roles
-permissions
-
-categories
-products
-modifiers
-
-customers
-loyalty_points
-
-tables
-reservations
-
-orders
-order_items
-payments
-
-inventory_items
-stock_movements
-
-suppliers
-purchases
-
-rooms
-bookings
-
-expenses
-
-notifications
-
-audit_logs
-
-Create all foreign keys, indexes, constraints, and relationships.
-
----
-
-# API Development
-
-Build REST APIs for all modules.
-
-Examples:
-
-/api/auth
-/api/users
-/api/branches
-/api/products
-/api/orders
-/api/customers
-/api/inventory
-/api/reports
-/api/hotel
-
-Provide:
-
-* Validation
-* Pagination
-* Filtering
-* Search
-* Sorting
-
----
-
-# Frontend Requirements
-
-Create:
-
-* Responsive layouts
-* Mobile support
-* Tablet POS mode
-* Dark mode
-* Light mode
-* Reusable components
-
-Use:
-
-* Zustand for state management
-* React Query for API calls
-* TailwindCSS for styling
-
----
-
-# Deliverables
-
-Generate:
-
-1. Complete project structure.
-2. Database schema.
-3. SQLAlchemy models.
-4. Flask backend APIs.
-5. Authentication system.
-6. React frontend.
-7. Dashboard pages.
-8. POS module.
-9. Inventory module.
-10. Hotel module.
-11. Reporting module.
-12. Docker configuration.
-13. Deployment guide.
-14. API documentation.
-15. Seed/demo data.
-
-Build the system module by module, following enterprise-grade architecture, clean code principles, scalability, security, maintainability, and production-ready standards.
+## Strategic Principles
+
+1. **Isolation first** — tenant data never bleeds across boundaries
+2. **Offline resilience** — POS works without internet; syncs automatically
+3. **Role clarity** — every user sees only what their role requires
+4. **Real-time operations** — KDS and live dashboards via WebSocket
+5. **Export everything** — all reports exportable to PDF, Excel, CSV
+6. **Enterprise security** — audit logs, rate limiting, hashed credentials
