@@ -1,0 +1,64 @@
+<style>
+  .mode-landscape .sl-grid { grid-template-columns: repeat(3, 1fr); }
+  .mode-portrait .sl-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .persona-chip { cursor: default; transition: all 0.15s; }
+  .persona-chip.active { background: #1E3A5F; color: #fff; }
+  .persona-chip:not(.active) { background: #F1F5F9; color: #475569; }
+</style>
+<section class="w-full h-full overflow-auto bg-white">
+  <div class="flex flex-col h-full p-12">
+    <!-- Header -->
+    <div class="mb-5">
+      <span class="text-xs font-semibold tracking-widest uppercase" style="color:#F59E0B;">Built for every role</span>
+      <h2 class="font-black mt-1" style="font-size:2rem; color:#1E3A5F; letter-spacing:-0.02em;">Core Features</h2>
+    </div>
+    <!-- Persona chips -->
+    <div class="flex flex-wrap gap-2 mb-7">
+      <span class="persona-chip active px-4 py-1.5 rounded-full text-xs font-semibold">Business Owner</span>
+      <span class="persona-chip px-4 py-1.5 rounded-full text-xs font-semibold">Manager</span>
+      <span class="persona-chip px-4 py-1.5 rounded-full text-xs font-semibold">Cashier</span>
+      <span class="persona-chip px-4 py-1.5 rounded-full text-xs font-semibold">Kitchen Staff</span>
+      <span class="persona-chip px-4 py-1.5 rounded-full text-xs font-semibold">Receptionist</span>
+    </div>
+    <!-- Feature grid -->
+    <div class="sl-grid grid gap-4 flex-1">
+      <!-- POS -->
+      <div class="rounded-2xl p-5 flex flex-col gap-2" style="background:#EFF6FF; border-top: 4px solid #1E3A5F;">
+        <p class="text-lg font-black" style="color:#1E3A5F;">Point of Sale</p>
+        <p class="text-sm" style="color:#374151;">Product grid, cart, split bills, discounts, refunds, and 5 payment methods. Offline-resilient with auto-sync.</p>
+        <span class="mt-auto text-xs font-semibold px-2 py-0.5 rounded-full w-fit" style="background:#1E3A5F; color:#fff;">Core Revenue Engine</span>
+      </div>
+      <!-- KDS -->
+      <div class="rounded-2xl p-5 flex flex-col gap-2" style="background:#FEF3C7; border-top: 4px solid #F59E0B;">
+        <p class="text-lg font-black" style="color:#1E3A5F;">Kitchen Display System</p>
+        <p class="text-sm" style="color:#374151;">Real-time order lifecycle from Created → Ready. Audio alerts, prep timers, and live Socket.IO updates.</p>
+        <span class="mt-auto text-xs font-semibold px-2 py-0.5 rounded-full w-fit" style="background:#F59E0B; color:#fff;">Real-Time</span>
+      </div>
+      <!-- Hotel -->
+      <div class="rounded-2xl p-5 flex flex-col gap-2" style="background:#F0FDF4; border-top: 4px solid #16a34a;">
+        <p class="text-lg font-black" style="color:#1E3A5F;">Hotel Management</p>
+        <p class="text-sm" style="color:#374151;">Booking calendar, room allocation, check-in/out, housekeeping, and room service — fully integrated.</p>
+        <span class="mt-auto text-xs font-semibold px-2 py-0.5 rounded-full w-fit" style="background:#16a34a; color:#fff;">Full Hotel Ops</span>
+      </div>
+      <!-- Inventory -->
+      <div class="rounded-2xl p-5 flex flex-col gap-2" style="background:#FFF7ED; border-top: 4px solid #ea580c;">
+        <p class="text-lg font-black" style="color:#1E3A5F;">Inventory &amp; Suppliers</p>
+        <p class="text-sm" style="color:#374151;">Stock tracking, purchase orders, ingredient auto-deduction per sale, low-stock alerts, and wastage logging.</p>
+        <span class="mt-auto text-xs font-semibold px-2 py-0.5 rounded-full w-fit" style="background:#ea580c; color:#fff;">Auto-Deduction</span>
+      </div>
+      <!-- Analytics -->
+      <div class="rounded-2xl p-5 flex flex-col gap-2" style="background:#F5F3FF; border-top: 4px solid #7c3aed;">
+        <p class="text-lg font-black" style="color:#1E3A5F;">Multi-Branch Analytics</p>
+        <p class="text-sm" style="color:#374151;">Cross-branch P&amp;L, revenue trends, top products, staff performance. Export to PDF, Excel, or CSV.</p>
+        <span class="mt-auto text-xs font-semibold px-2 py-0.5 rounded-full w-fit" style="background:#7c3aed; color:#fff;">Export-Ready</span>
+      </div>
+      <!-- Accounting -->
+      <div class="rounded-2xl p-5 flex flex-col gap-2" style="background:#EFF6FF; border-top: 4px solid #0284c7;">
+        <p class="text-lg font-black" style="color:#1E3A5F;">Accounting</p>
+        <p class="text-sm" style="color:#374151;">Journal entries, income &amp; expense tracking, cash flow, P&amp;L statements, and balance sheet — per branch or consolidated.</p>
+        <span class="mt-auto text-xs font-semibold px-2 py-0.5 rounded-full w-fit" style="background:#0284c7; color:#fff;">Full Ledger</span>
+      </div>
+    </div>
+  </div>
+</section>
